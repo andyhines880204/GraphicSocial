@@ -203,26 +203,25 @@
 
   export const parse = () => {
     let {content, annotations} = contenteditable.parse()
+    const topics = pluck("value", annotations.filter(propEq("prefix", "#")))
 
     // Remove zero-width and non-breaking spaces
     content = content.replace(/[\u200B\u00A0]/g, " ").trim()
 
-    // Strip the @ sign in mentions
-    annotations.filter(propEq("prefix", "@")).forEach(({value}, index) => {
-      content = content.replace("@" + value, value)
+    // We're still using old style mention interpolation until NIP-27
+    // gets merged https://github.com/nostr-protocol/nips/pull/381/files
+    const mentions = annotations.filter(propEq("prefix", "@")).map(({value}, index) => {
+      content = content.replace("@" + value, `#[${index}]`)
+
+      return pubkeyEncoder.decode(value)
     })
 
-    return content
+    return {content, topics, mentions}
   }
 </script>
 
 <div class="flex">
-  <ContentEditable
-    style={$$props.style}
-    class={$$props.class}
-    bind:this={contenteditable}
-    on:keydown={onKeyDown}
-    on:keyup={onKeyUp} />
+  <ContentEditable bind:this={contenteditable} on:keydown={onKeyDown} on:keyup={onKeyUp} />
   <slot name="addon" />
 </div>
 

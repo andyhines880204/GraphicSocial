@@ -93,7 +93,7 @@
           getHeight(lastChild.nextElementSibling?.nextElementSibling) -
           (lastChild.nextElementSibling ? 16 : 0)
 
-        border.style = `height: ${height - 21}px`
+        // border.style = `height: ${height - 21}px`
       }
     }
   }
@@ -109,7 +109,7 @@
 
 <div class="note pb-2">
   <div bind:this={noteContainer} class="group relative">
-    <div class="bg-gradient-to-r from-black-color to-gray-color!">
+    <div class="bg-gradient-to-r">
       <Card
         class="relative flex gap-4"
         on:click={onClick}

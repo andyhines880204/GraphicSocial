@@ -48,9 +48,11 @@
   }
 
   const send = async () => {
-    let {content, mentions, topics} = reply.parse()
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    let {content, mentions, topics} = reply.data.parse()
     console.log(content);
+    console.log(mentions);
+    console.log(topics);
     if (data.image) {
       content = (content + "\n" + data.image).trim()
     }
@@ -113,7 +115,7 @@
         </Compose>
       </div>
       {#if data.image}
-        <div class="p-2">
+        <div class="bg-black-color p-2">
           <Media
             link={{type: "image", url: data.image}}
             onClose={() => {
@@ -122,7 +124,7 @@
         </div>
       {/if}
       <div class={`h-px bg-${borderColor}`} />
-      <div class="flex gap-2 rounded-b p-2 text-sm text-gray-2">
+      <div class="flex gap-2 rounded-b bg-black-color p-2 text-sm text-gray-2">
         <div class="inline-block border-r border-solid border-gray-6 py-2 pl-1 pr-3">
           <div class="flex cursor-pointer items-center gap-3">
             <ImageInput bind:value={data.image} icon="image" hideInput>
