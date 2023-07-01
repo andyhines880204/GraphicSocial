@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .fa-beat-custom {
+    --fa-animation-duration: 0.4s;
+    --fa-fade-opacity: 0.6;
+    --fa-animation-iteration-count: 1;
+    --fa-beat-scale: 1.4;
+  }
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/Montserrat Regular 400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: bold;
+  font-weight: 600;
+  src: local(""), url("/fonts/Montserrat SemiBold 600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url("/fonts/Montserrat Italic 400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Staatliches";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("/fonts/Staatliches Regular 400.ttf") format("truetype");
+}
+
+.montserrat {
+  font-family: Montserrat;
+  font-weight: 400;
+}
+
+.staatliches {
+  font-family: Staatliches;
+}
+
+:root {
+  font-family: Montserrat;
+}
+
+html,
+body,
+#app,
+#app > div {
+  height: 100%;
+}
+
+/* Tippy dark */
+
+.tippy-box[data-theme~="dark"] {
+  background-color: #0f0f0e;
+  border: 1px solid #403d39;
+  box-shadow:
+    3px 3px 20px rgba(0, 0, 0, 0.1),
+    3px -3px 20px rgba(0, 0, 0, 0.1),
+    -3px 3px 20px rgba(0, 0, 0, 0.1),
+    -3px -3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tippy-box[data-theme~="dark"][data-placement^="top"] > .tippy-arrow {
+  bottom: -1px !important;
+}
+
+.tippy-box[data-theme~="dark"][data-placement^="top"] > .tippy-arrow:before {
+  border-top-color: #403d39;
+}
+
+.tippy-box[data-theme~="dark"][data-placement^="bottom"] > .tippy-arrow:before {
+  border-bottom-color: #403d39;
+}
+
+.tippy-box[data-theme~="dark"][data-placement^="left"] > .tippy-arrow:before {
+  border-left-color: #403d39;
+}
+
+.tippy-box[data-theme~="dark"][data-placement^="right"] > .tippy-arrow:before {
+  border-right-color: #403d39;
+}
+
+.tippy-box[data-theme~="dark"] > .tippy-backdrop {
+  background-color: #403d39;
+}
+
+.tippy-box[data-theme~="dark"] > .tippy-svg-arrow {
+  fill: #0f0f0e;
+}
+
+/* Tippy transparent */
+
+.tippy-box[data-theme~="transparent"] {
+  background-color: transparent;
+}
+
+.tippy-box[data-theme~="transparent"][data-placement^="top"] > .tippy-arrow:before {
+  border-color: transparent;
+}
+
+.tippy-box[data-theme~="transparent"] > .tippy-svg-arrow {
+  fill: transparent;
+}
+
+.btn-sqaure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #E4EAF4;
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: auto;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
