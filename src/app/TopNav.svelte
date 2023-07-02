@@ -24,11 +24,10 @@
   <div class="fa fa-bars fa-2xl -m-6 cursor-pointer p-6 lg:hidden" on:click={toggleMenu} />
   <div class="flex items-center gap-4">
     <Anchor
-      external
       type="unstyled"
-      href="https://info.coracle.social"
+      href="/about"
       class="flex items-center gap-2">
-      <img alt="Manyworlds Logo" src={logoUrl} class="w-8" />
+      <!-- <img alt="Manyworlds Logo" src={logoUrl} class="w-8" /> -->
       <h1 class="staatliches text-3xl">{appName}</h1>
     </Anchor>
     <!-- <i class="fa fa-lightbulb -m-4 cursor-pointer p-4 text-lg" on:click={toggleTheme} /> -->

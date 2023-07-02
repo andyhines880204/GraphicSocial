@@ -17,7 +17,7 @@
   on:change={onChange}
   onColor="#ccc"
   offColor="#ccc"
-  onHandleColor="#EB5E28"
+  onHandleColor="#3deb28"
   handleDiameter={20}
   unCheckedIcon={false}
   boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"

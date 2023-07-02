@@ -22,6 +22,7 @@
   import UserProfile from "src/app/views/UserProfile.svelte"
   import UserSettings from "src/app/views/UserSettings.svelte"
     import Home from "./views/Home.svelte"
+    import About from "./views/About.svelte"
 
   let ready = false
 
@@ -44,6 +45,11 @@
     <Route path="/notes" let:params>
       <EnsureData>
         <Feeds />
+      </EnsureData>
+    </Route>
+    <Route path="/" let:params>
+      <EnsureData>
+        <Home />
       </EnsureData>
     </Route>
     <Route path="/home" let:params>
@@ -85,6 +91,7 @@
     <Route path="/settings" component={UserSettings} />
     <Route path="/login" component={Login} />
     <Route path="/logout" component={Logout} />
+    <Route path="/about" component={About} />
     <Route path="/:entity" let:params>
       {#key params.entity}
         <Bech32Entity entity={params.entity} />

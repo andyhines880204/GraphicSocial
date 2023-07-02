@@ -53,7 +53,7 @@
 
   const autocomplete = ({person = null, force = false} = {}) => {
     let completed = false
-
+ 
     const {selection, node, offset, word} = getInfo()
 
     const annotate = (prefix, text, value) => {

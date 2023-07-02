@@ -22,7 +22,7 @@
   let scanner
 
   export let searchkey;
-  if(searchkey) q = searchkey;
+  if(searchkey != "Search") q = searchkey;
   
   const tryParseEntity = debounce(500, async entity => {
     entity = fromNostrURI(entity)
