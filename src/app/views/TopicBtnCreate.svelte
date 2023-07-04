@@ -15,7 +15,7 @@
     let compose = null
   
     const onSubmit = async () => {
-        let content = compose.parse();
+        let {content} = compose.parse();
         var settings = user.getSettings();
         console.log(content);
         settings.topicBtns.push(content);

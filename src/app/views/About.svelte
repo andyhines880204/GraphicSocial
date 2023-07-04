@@ -28,8 +28,7 @@
       </p>
     </Content>
   {/if}
-  <Content style="height: 80vh">
+  <Content size="inherit" style="height: 80vh">
     <h1>About US</h1>
-    <p></p>
   </Content>
 </Content>
