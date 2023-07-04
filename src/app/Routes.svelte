@@ -47,7 +47,7 @@
         <Feeds />
       </EnsureData>
     </Route>
-    <Route path="/" let:params>
+    <Route path="/home" let:params>
       <EnsureData>
         <Home />
       </EnsureData>
