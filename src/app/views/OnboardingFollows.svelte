@@ -13,7 +13,8 @@
   import user from "src/agent/user"
 
   const {petnamePubkeys} = user
-
+  console.log("#@@@@@@@@@@@@@@@@@@")
+  console.log(petnamePubkeys);
   if ($petnamePubkeys.length === 0) {
     user.updatePetnames(() =>
       defaultFollows.map(pubkey => {

@@ -21,6 +21,7 @@
   import RelayAdd from "src/app/views/RelayAdd.svelte"
     import TopicBtnCreate from "./views/TopicBtnCreate.svelte"
     import TopicBtnDelete from "./views/TopicBtnDelete.svelte"
+    import SmartLogin from "./views/SmartLogin.svelte"
 
   export let m
 </script>
@@ -41,6 +42,8 @@
   <NoteShare note={m.note} />
 {:else if m.type === "relay/add"}
   <RelayAdd url={m.url} />
+{:else if m.type === "smartlogin"}
+  <SmartLogin />
 {:else if m.type === "onboarding"}
   <Onboarding stage={m.stage} />
 {:else if m.type === "room/edit"}

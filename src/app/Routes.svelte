@@ -47,15 +47,11 @@
         <Feeds />
       </EnsureData>
     </Route>
-    <Route path="/home" let:params>
-      <EnsureData>
+    <Route path="/" let:params>
         <Home />
-      </EnsureData>
     </Route>
     <Route path="/home" let:params>
-      <EnsureData>
         <Home />
-      </EnsureData>
     </Route>
     <Route path="/people/:npub/:activeTab" let:params>
       {#key params.npub}
