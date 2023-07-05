@@ -1,20 +1,14 @@
 <script lang="ts">
-  import {uniq} from "ramda"
+  import {uniq, reject} from "ramda"
   import {onMount} from "svelte"
   import {generatePrivateKey} from "nostr-tools"
-  import {fly} from "svelte/transition"
   import {navigate} from "svelte-routing"
+  import {fly} from "svelte/transition"
   import {shuffle} from "src/util/misc"
   import {displayPerson} from "src/util/nostr"
-  import OnboardingIntro from "src/app/views/OnboardingIntro.svelte"
-  import OnboardingProfile from "src/app/views/OnboardingProfile.svelte"
-  import OnboardingKey from "src/app/views/OnboardingKey.svelte"
-  import OnboardingRelays from "src/app/views/OnboardingRelays.svelte"
-  import OnboardingFollows from "src/app/views/OnboardingFollows.svelte"
-  import OnboardingNote from "src/app/views/OnboardingNote.svelte"
   import {getFollows, defaultFollows} from "src/agent/social"
   import {getPubkeyWriteRelays, sampleRelays} from "src/agent/relays"
-  import {getPersonWithFallback} from "src/agent/db"
+  import {getPersonWithFallback, searchPeople} from "src/agent/db"
   import network from "src/agent/network"
   import user from "src/agent/user"
   import pool from "src/agent/pool"
@@ -22,8 +16,10 @@
   import cmd from "src/agent/cmd"
   import {loadAppData} from "src/app/state"
   import {modal} from "src/partials/state"
-
-  export let stage
+  import Input from "src/partials/Input.svelte"
+  import Anchor from "src/partials/Anchor.svelte"
+  import Heading from "src/partials/Heading.svelte"
+  import Content from "src/partials/Content.svelte"
 
   const privkey = generatePrivateKey()
   const profile = {}
@@ -38,14 +34,27 @@
     )
   }
 
-  const signup = async note => {
+  const signup = async () => {
     await keys.login("privkey", privkey)
+    profile.about = "I am new user"
+    profile.picture = ""
+
+    user.updatePetnames(() =>
+      defaultFollows.map(pubkey => {
+        const [{url}] = sampleRelays(getPubkeyWriteRelays(pubkey))
+        const name = displayPerson(getPersonWithFallback(pubkey))
+
+        return ["p", pubkey, url, name]
+      })
+    )
+
+    console.log("######################")
+    console.log(user)
 
     // Re-save preferences now that we have a key
     await Promise.all([
       user.updateRelays(() => user.getRelays()),
       cmd.updateUser(profile).publish(user.getRelays()),
-      note && cmd.createNote(note.content, note.mentions, note.topics).publish(user.getRelays()),
       user.updatePetnames(() =>
         user.getPetnamePubkeys().map(pubkey => {
           const [{url}] = sampleRelays(getPubkeyWriteRelays(pubkey))
@@ -75,20 +84,18 @@
   })
 </script>
 
-{#key stage}
-  <div in:fly={{y: 20}}>
-    {#if stage === "intro"}
-      <OnboardingIntro />
-    {:else if stage === "profile"}
-      <OnboardingProfile {profile} />
-    {:else if stage === "key"}
-      <OnboardingKey {privkey} />
-    {:else if stage === "relays"}
-      <OnboardingRelays />
-    {:else if stage === "follows"}
-      <OnboardingFollows />
-    {:else if stage === "note"}
-      <OnboardingNote {signup} />
-    {/if}
-  </div>
-{/key}
+<div in:fly={{y: 20}}>
+  <Content size="lg">
+    <Heading class="text-center">Welcome to Graphic</Heading>
+    <p class="text-center">Type your username and start using the app.</p>
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-1">
+        <strong>Your Name</strong>
+        <Input type="text" name="name" wrapperClass="flex-grow" bind:value={profile.name}>
+          <i slot="before" class="fa-solid fa-user-astronaut" />
+        </Input>
+      </div>
+    </div>
+    <Anchor type="button-accent" class="text-center" on:click={signup}>Start</Anchor>
+  </Content>
+</div>

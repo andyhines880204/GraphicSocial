@@ -240,7 +240,7 @@ export const login = async (method, key) => {
       network.loadPeople([user.getPubkey()], {force: true, kinds: userKinds}),
     ])
 
-    navigate("/notes")
+    navigate("/home")
   } else {
     modal.push({type: "login/connect", noEscape: true})
   }

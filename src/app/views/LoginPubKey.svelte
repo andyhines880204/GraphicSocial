@@ -12,7 +12,8 @@
 
   const logIn = () => {
     const pubkey = npub.startsWith("npub") ? toHex(npub) : npub
-
+    console.log("PUBPUBPUBPUBPUBPUBPUBPUBPUBPUBPUBPUBPUB");
+    console.log(pubkey);
     try {
       keys.validate(pubkey)
     } catch (e) {
